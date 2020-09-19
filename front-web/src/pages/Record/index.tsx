@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import './styles.css';
 import Pagination from './Pagination';
 import { Platform } from './types';
 import { formatDate } from '../../utils/formatDate';
+import Filters from '../../components/Filters';
 
 
-interface RecordItem {
+export interface RecordItem {
   id: number;
   moment: string;
   name: string;
@@ -26,7 +27,7 @@ const Recods: React.FC = () => {
   const [activePage, setActivePage] = useState(0);
 
   useEffect(() => {
-    axios.get(`https://sds1-domingos.herokuapp.com/records?linesPerPage=16&page=${activePage}`).then(
+    api.get(`records?linesPerPage=12&page=${activePage}`).then(
       response => setRecordsResponse(response.data));
 
   }, [activePage]);
@@ -36,6 +37,7 @@ const Recods: React.FC = () => {
   }
   return (
     <div className="page-container">
+      <Filters link="/charts" linkText="VER GRÁFICO"/>
       <table className="records-table" cellPadding="0" cellSpacing="0">
         <thead>
           <tr>

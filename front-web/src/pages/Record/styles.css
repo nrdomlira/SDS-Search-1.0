@@ -42,7 +42,7 @@
   .records-table tbody tr {
     height: 45px;
     color: #FFF;
-    font-size: 18px;
+    font-size: 1rem;
   }
   
   .records-table tbody tr:nth-child(odd) {
